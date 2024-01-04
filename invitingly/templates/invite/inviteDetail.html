@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    輸入{{ title }}
+{% endblock %}
+
+{% block content %}
+    <div class="page-content">
+        <div class="container-fluid">
+            <h2 class="my-4">邀請函 {{ title }}</h2>
+            <hr>
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <p> You can find the complete code on <a href="https://github.com/azouaoui-med/pro-sidebar-template"
+                                                             target="_blank">
+                        Github</a>, it contains more themes and background image option</p>
+                </div>
+
+
+            </div>
+            <h5>More templates</h5>
+            <hr>
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-12">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <ul>
+                                <li>編號: {{ invites_detail.autono }}</li>
+                                <li>真實姓名: {{ invites_detail.name }}</li>
+                                <li>手機電話: {{ invites_detail.phone }}</li>
+                                <li>地址: {{ invites_detail.address }}</li>
+                                <li>信箱: {{ invites_detail.email }}</li>
+                                <li>飲食習慣: {{ invites_detail.diet }}</li>
+                                <li>嬰兒座椅: {{ invites_detail.baby_seat }}</li>
+                                <li>建立時間: {{ invites_detail.created_at }}</li>
+                                <li>更新時間: {{ invites_detail.updated_at }}</li>
+                                <li>狀態: {{ invites_detail.status }}</li>
+                                <li>系統作業: {{ invites_detail.opertion_sys }}</li>
+                                <br>
+                                <li>
+                                    <a href="{% url 'invite:invite_list' %}">返回首頁</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        <hr>
+
+        <footer class="text-center">
+            <div class="mb-2">
+                <small>
+                    © 2020 made with <i class="fa fa-heart" style="color:red"></i> by - <a target="_blank"
+                                                                                           rel="noopener noreferrer"
+                                                                                           href="https://azouaoui.netlify.com">
+                    Mohamed Azouaoui
+                </a>
+                </small>
+            </div>
+            <div>
+                <a href="https://github.com/azouaoui-med" target="_blank">
+                    <img alt="GitHub followers"
+                         src="https://img.shields.io/github/followers/azouaoui-med?label=github&style=social"/>
+                </a>
+                <a href="https://twitter.com/azouaoui_med" target="_blank">
+                    <img alt="Twitter Follow"
+                         src="https://img.shields.io/twitter/follow/azouaoui_med?label=twitter&style=social"/>
+                </a>
+            </div>
+        </footer>
+    </div>
+{% endblock %}

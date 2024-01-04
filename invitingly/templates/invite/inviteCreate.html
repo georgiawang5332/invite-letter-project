@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    填寫{{ title }}
+{% endblock %}
+
+{% block content %}
+    {% load crispy_forms_tags %}
+
+
+    <div class="page-content">
+        <div class="container-fluid">
+            <h2>{{ title }}</h2>
+            <hr>
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <p>This is a responsive sidebar template with dropdown menu based on bootstrap 4 framework.</p>
+                    <p> You can find the complete code on <a href="https://github.com/azouaoui-med/pro-sidebar-template"
+                                                             target="_blank">
+                        Github</a>, it contains more themes and background image option</p>
+                </div>
+                <div class="form-group col-md-12">
+                    <iframe src="https://ghbtns.com/github-btn.html?user=azouaoui-med&repo=pro-sidebar-template&type=star&count=true&size=small"
+                            frameborder="0" scrolling="0" width="90px" height="30px"></iframe>
+                    <iframe src="https://ghbtns.com/github-btn.html?user=azouaoui-med&repo=pro-sidebar-template&type=fork&count=true&size=small"
+                            frameborder="0" scrolling="0" width="90px" height="30px"></iframe>
+                </div>
+                <div class="form-group col-md-12">
+                    <div class="alert alert-success" role="alert">
+                        <h4 class="alert-heading">New !</h4>
+                        <p>New react pro sidebar library is now available on <a
+                                href="https://www.npmjs.com/package/react-pro-sidebar" target="_blank">npm</a> <a
+                                href="https://github.com/azouaoui-med/react-pro-sidebar" target="_blank">
+                            <img alt="GitHub stars"
+                                 src="https://img.shields.io/github/stars/azouaoui-med/react-pro-sidebar?style=social"/>
+                        </a></p>
+                        <a href="https://github.com/azouaoui-med/react-pro-sidebar" target="_blank"
+                           class="btn btn-sm btn-primary mr-2">
+                            Github</a>
+                        <a href="https://azouaoui-med.github.io/react-pro-sidebar" target="_blank"
+                           class="btn btn-sm btn-success">
+                            Demo</a>
+
+                    </div>
+
+                </div>
+            </div>
+            <h5>More templates</h5>
+            <hr>
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-12">
+                    {# <div class="card rounded-0 p-0 shadow-sm"></div>#}
+                    <!--Django Model Form-->
+                    <h2 class="my-4">Add a new movie</h2>
+
+
+
+
+                    <form method="POST">
+                        {% csrf_token %}
+                        {{ invite_form|crispy }}
+{#                        {{ invite_form.as_p }}#}
+                        <button class="btn btn-primary my-4" value="save" type="submit">送出</button>
+                    </form>
+                    <!--Django Model-->
+
+
+
+
+
+                    <div class="row">
+                            {% for m in invite %}
+                                <div class="col-lg-4 col-md-6 col-sm-12 pb-4">
+                                    <div class="card h-100 p-4">
+{#                                        <img src="{{ m.movie_poster.url }}" class="card-img-top"#}
+{#                                             alt="{{ m.movie_title }}">#}
+                                        <h4>{{ m.rsvpName }}</h4>
+                                        <h4>{{ m.rsvpPhone }}</h4>
+                                        <h4>{{ m.rsvpAddress }}</h4>
+                                        <h4>{{ m.rsvpEmail }}</h4>
+{#                                        <p class="text-muted">{{ m.release_year }} | {{ m.director }}</p>#}
+{#                                        <p>{{ m.movie_plot }}</p>#}
+                                    </div>
+                                </div>
+                            {% empty %}
+                                <p>沒有添加電影。</p>
+                            {% endfor %}
+                        </div>
+
+                </div>
+            </div>
+            <hr>
+
+            <footer class="text-center">
+                <div class="mb-2">
+                    <small>
+                        © 2020 made with <i class="fa fa-heart" style="color:red"></i> by - <a target="_blank"
+                                                                                               rel="noopener noreferrer"
+                                                                                               href="https://azouaoui.netlify.com">
+                        Mohamed Azouaoui
+                    </a>
+                    </small>
+                </div>
+                <div>
+                    <a href="https://github.com/azouaoui-med" target="_blank">
+                        <img alt="GitHub followers"
+                             src="https://img.shields.io/github/followers/azouaoui-med?label=github&style=social"/>
+                    </a>
+                    <a href="https://twitter.com/azouaoui_med" target="_blank">
+                        <img alt="Twitter Follow"
+                             src="https://img.shields.io/twitter/follow/azouaoui_med?label=twitter&style=social"/>
+                    </a>
+                </div>
+            </footer>
+        </div>
+    </div>
+{% endblock %}

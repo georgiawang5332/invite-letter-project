@@ -1,0 +1,30 @@
+
+{% extends 'basepage.html' %}
+{% load static %}
+
+{% block content %}
+<!--連結 Full Calendar 套件 main css -->
+<link rel="stylesheet" href="{% static 'fullcalendar/css/main.css' %} ">
+<!--本地端 style css -->
+<link rel="stylesheet" href="{% static 'fullcalendar/css/style.css' %} ">
+
+
+<br><br><br><br><br><br>
+<div class="container">
+<!--    <div class="row">-->
+        <div id='calendar'>
+        </div>
+<!--    </div>-->
+</div>
+
+
+
+
+<!--連結 Full Calendar 套件 js-->
+<script src="{% static 'fullcalendar/js/main.js' %}"></script>
+<!--Full Calendar 轉換成中文版本套件-->
+<script src="{% static 'fullcalendar/js/locales-all.js' %}"></script>
+<!--本地端 style js -->
+<script src="{% static 'fullcalendar/js/style.js' %}"></script>
+
+{% endblock %}

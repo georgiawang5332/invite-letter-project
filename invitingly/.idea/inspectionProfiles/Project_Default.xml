@@ -1,0 +1,47 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="Eslint" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="PyPackageRequirementsInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredPackages">
+        <value>
+          <list size="8">
+            <item index="0" class="java.lang.String" itemvalue="dj-database-url" />
+            <item index="1" class="java.lang.String" itemvalue="django-heroku" />
+            <item index="2" class="java.lang.String" itemvalue="Django" />
+            <item index="3" class="java.lang.String" itemvalue="tzdata" />
+            <item index="4" class="java.lang.String" itemvalue="asgiref" />
+            <item index="5" class="java.lang.String" itemvalue="whitenoise" />
+            <item index="6" class="java.lang.String" itemvalue="gunicorn" />
+            <item index="7" class="java.lang.String" itemvalue="sqlparse" />
+          </list>
+        </value>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="PyUnresolvedReferencesInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredIdentifiers">
+        <list>
+          <option value="django.contrib.auth.views.login" />
+          <option value="midstream.models.FRESHMAN" />
+          <option value="django_heroku" />
+          <option value="employeeInfo.views.absenceFmWkCreate.objects" />
+          <option value="django.shortcuts.render_to_response" />
+          <option value="employeeInfo.models.Employee" />
+          <option value="employeeInfo.forms.RawAbsenceWorkForm.save" />
+          <option value="django.views.SearchView" />
+          <option value="prodmanager.settings.SETTINGS_PATH" />
+          <option value="user.views.register.as_view" />
+          <option value="leave_comments.views.HomePage.as_view" />
+          <option value="django.contrib.sessions.models.session" />
+          <option value="inviteApp.models.InviteComeYN.is_valid" />
+          <option value="marryApp.views.redirect" />
+          <option value="inviteRSVP.forms.PhoneNumberField" />
+          <option value="applicant.views.register_view" />
+          <option value="account.views.HttpResponse" />
+          <option value="django.forms.ContactusForm" />
+        </list>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="Stylelint" enabled="true" level="ERROR" enabled_by_default="true" />
+  </profile>
+</component>

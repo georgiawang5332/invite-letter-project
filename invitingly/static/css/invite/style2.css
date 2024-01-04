@@ -1,0 +1,177 @@
+@import "compass/css3";
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  background-color: #f5f5f5;
+  color: #454545;
+  font: 400 75%/1.5 "economica", sans-serif;
+  min-width: 30em;
+}
+h2, h3 {
+  margin: 0 0 0.375rem 0;
+}
+h3 {
+  margin-top: 1.5rem;
+}
+.subtitle {
+  font-style: italic;
+  font-weight: 400;
+  font-size: 0.875em;
+  color: #898989;
+  margin: 0 0 0.25em;
+}
+.card {
+  border: 0.75rem solid #454545;
+  max-width: 36em;
+  margin: 1.5em auto;
+}
+.heading {
+  font-weight: 700;
+}
+.super-heading, .title {
+  display: inline-block;
+  color: #f5f5f5;
+  background: #454545;
+  text-transform: uppercase;
+}
+.super-heading {
+  font-size: 1.75em;
+  font-style: italic;
+  padding: 0 0.5em 0.125em 0.125em;
+  margin: 1em 0 0.125em;
+  line-height: 1.25;
+}
+.title {
+  margin: 0 0 0.125em;
+  padding-right: 0.125em;
+  font-size: 7.5em;
+  line-height: 1;
+}
+.mirrored {
+  display: inline-block;
+  transform: matrix(-1, 0, 0, 1, 0, 0);
+}
+.party-address {
+  padding: 0.125em 0;
+  font-style: normal;
+  text-align: center;
+  border-width: 0.125em 0;
+  border-style: solid;
+  border-color: #454545;
+}
+.party-address > p {
+  display: inline-block;
+  margin: 0 1em;
+}
+.party-date {
+  display: block;
+  border-bottom: 0.125em solid #454545;
+  text-align: center;
+  margin: 0 0 0.5em;
+}
+.party-month, .party-day {
+  display: inline-block;
+  vertical-align: baseline;
+  font-weight: 700;
+}
+.party-month {
+  font-size: 6em;
+  line-height: 1.25;
+  margin-left: 0.25em;
+}
+.party-day {
+  line-height: 1;
+  font-size: 9em;
+}
+.party-day sup {
+  font-size: 0.25em;
+  top: -2em;
+}
+form {
+  padding: 2.4em 0.75em 0.75em;
+}
+input[type=radio] {
+  margin-right: 0.25em;
+}
+.radio-bringing--yes:checked ~ .is_bringing {
+  display: block;
+}
+.radio-coming--yes:checked ~ .bringing {
+  display: block;
+}
+.label-coming--yes, .label-bringing--yes {
+  margin-right: 1.5em;
+}
+.bringing {
+  display: none;
+  border: none;
+  padding: 0;
+}
+.is_bringing {
+  display: none;
+  padding-left: 1.5em;
+  border: none;
+}
+input[type=text] {
+  width: 100%;
+  margin: 0 0 0.5em;
+  -webkit-appearance: none;
+  border-radius: 0;
+  border: 0.0675em solid #898989;
+  padding: 0.25em 0.375em;
+  color: #454545;
+}
+input[type=text]:disabled {
+  color: #898989;
+}
+.send-card-button {
+  display: block;
+  margin: 1.5em auto 0;
+  border: none;
+  background-color: #454545;
+  padding: 0.25em 0.5em 0.5em;
+  color: #f5f5f5;
+  font-size: 1.5em;
+}
+.send-card-button:hover {
+  color: tomato;
+}
+.send-card-button.sent {
+  pointer-events: none;
+}
+.thank-you {
+  text-align: center;
+  margin: 1.5em 0 0 0;
+}
+@media only screen and (min-width: 48em) {
+  body {
+    font-size: 1em;
+  }
+  .card {
+    max-width: 56em;
+  }
+  .card:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  .column {
+    float: left;
+  }
+  .column.left {
+    width: 66.6666%;
+    border-right: 0.125em solid #454545;
+  }
+  .column.right {
+    width: 33.3334%;
+  }
+  .party-address {
+    margin: 2.4em 0 1.5em;
+  }
+  .party-date {
+    border: none;
+  }
+}

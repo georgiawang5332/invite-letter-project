@@ -1,0 +1,15 @@
+
+Bpython:S125"Remove this commented out code.(Ğ·òşûÿÿÿÿ8Ê­½¤1
+6python:S125"Remove this commented out code.(‚´à
+kpython:S17632"GDelete this unreachable code or refactor the code to make it reachable.(†îşÿÿÿÿ8à¬¼¤1
+Bpython:S1250"Remove this commented out code.(ÀøÎ„ıÿÿÿÿ8ûë²¤1
+]python:S9052":Remove or refactor this statement; it has no side effects.(†îşÿÿÿÿ8à¬¼¤1
+vpython:S1179"ZRename this local variable "adminForm" to match the regular expression ^[_a-z][a-z0-9_]*$.(Õº·¡ıÿÿÿÿ
+ppython:S1178"YRename this local variable "userForm" to match the regular expression ^[_a-z][a-z0-9_]*$.(àşË
+5python:S125G"Remove this commented out code.(û¾ö0
+Cpython:S5806N"+Rename this variable; it shadows a builtin.(¶Šß˜
+Cpython:S5806["+Rename this variable; it shadows a builtin.(¶Šß˜
+spython:S117l"\Rename this local variable "studentForm" to match the regular expression ^[_a-z][a-z0-9_]*$.(Ç«ÈÜ
+upython:S117k"YRename this local variable "userForm" to match the regular expression ^[_a-z][a-z0-9_]*$.(İ¢öşÿÿÿÿ
+7python:S125‰"Remove this commented out code.(Ù¨•Ÿ
+<python:S125‘"Remove this commented out code.(ÄÀéùÿÿÿÿ

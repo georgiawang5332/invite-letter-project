@@ -1,0 +1,33 @@
+{% load static %}
+
+<div class="bs-example">
+    <nav class="navbar navbar-expand-md  navbar-dark bg-secondary fixed-top p-2 px-md-4 mb-3"
+         style="background-color: #000000;">
+        <!--{#        <a style="color: #ffffff;text-decoration: none; " href="/"><font face="Comic sans MS" size="5">婚宴#}-->
+        <!--{#            小助手</font><br/></a>#}-->
+        <a class="navbar-item" href="/">
+            <img src="{% static 'img/django_logo.png' %}"
+                 width="100px" height="40px">
+        </a>
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+            <div class="navbar-nav">
+                <a style="padding-left: 30px;" href="/" class="nav-item nav-link active">首頁</a>
+                <a href="{% url 'invite:questionclick_view' %}" class="nav-item nav-link">邀請函-貴賓</a>
+                <a href="{% url 'cale:calendar' %}" class="nav-item nav-link">日曆</a>
+                <a href="{% url 'aboutus' %}" class="nav-item nav-link">關於我</a>
+                <a href="{% url 'contactus' %}" class="nav-item nav-link">聯繫我</a>
+            </div>
+            <div class="navbar-nav">
+<!--                <a href="/adminsignup" class="nav-item nav-link btn btn-outline-primary">管理員-註冊</a>-->
+                <a href="{% url 'adminsignup' %}" class="nav-item nav-link btn btn-outline-primary">管理員-註冊</a>
+<!--                <a href="/adminclick" class="nav-item nav-link">管理員-登入</a>-->
+                <a href="{% url 'adminclick' %}" class="nav-item nav-link">管理員-登入</a>
+            </div>
+        </div>
+    </nav>
+</div>
+<!-- End Header -->

@@ -1,0 +1,152 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    輸入{{ title }}
+{% endblock %}
+
+{% block content %}
+    <div class="page-content">
+        <div class="container-fluid">
+            <h2 class="my-4">{{ title }}</h2>
+            <hr>
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <p> You can find the complete code on <a href="https://github.com/azouaoui-med/pro-sidebar-template"
+                                                             target="_blank">
+                        Github</a>, it contains more themes and background image option</p>
+                </div>
+
+
+            </div>
+            <h5>More templates</h5>
+            <hr>
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-12">
+                    <div class="container-fluid">
+                        <div class="row">
+
+                            <form method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+
+                                <div class="form-group mb-3">
+                                    <label for="name">真實姓名</label>
+                                    {# <input type="text" class="form-control" id="name" name="name"#}
+                                    {#        value="{{ invite.name }}">#}
+                                    {{ form.name }}
+                                    <span class="helptext">ex: 王小明</span>
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <label for="phone">電話號碼</label>
+{#                                    <input type="text" class="form-control" id="phone" name="phone"#}
+{#                                           value="{{ invite.phone }}">#}
+                                    {{ form.phone }}
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <label for="address">地址</label>
+{#                                    <input type="text" class="form-control" id="address" name="address"#}
+{#                                           value="{{ invite.address }}">#}
+                                    {{ form.address }}
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <label for="email">電子郵件</label>
+{#                                    <input type="text" class="form-control" id="email" name="email"#}
+{#                                           value="{{ invite.email }}">#}
+                                    {{ form.email }}
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <label for="know">認識哪位新人?</label>
+{#                                    <select class="form-control" id="know" name="know">#}
+{#                                        <option value="">請選擇</option>#}
+{#                                        <option value="網路搜尋">網路搜尋</option>#}
+{#                                        <option value="報章雜誌">報章雜誌</option>#}
+{#                                        <option value="朋友介紹">朋友介紹</option>#}
+{#                                    </select>#}
+                                    {{ form.know }}
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <label for="diet">飲食習慣?</label>
+{#                                    <input type="text" class="form-control" id="diet" name="diet"#}
+{#                                           value="{{ invite.diet }}">#}
+                                    {{ form.diet }}
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <label for="baby_seat">嬰兒座椅需求</label>
+{#                                    <input type="checkbox" id="baby_seat" name="baby_seat"#}
+{#                                           {% if invite.baby_seat %}checked{% endif %}>#}
+                                    {{ form.baby_seat }}
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <label for="baby_seat">建立表單時間</label>
+{#                                    <input type="checkbox" id="baby_seat" name="baby_seat"#}
+{#                                           {% if invite.baby_seat %}checked{% endif %}>#}
+                                    {{ form.created_at }}
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <label for="baby_seat">更新表單時間</label>
+{#                                    <input type="checkbox" id="baby_seat" name="baby_seat"#}
+{#                                           {% if invite.baby_seat %}checked{% endif %}>#}
+                                    {{ form.updated_at }}
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <label for="opertion_sys">作業系統</label>
+{#                                    <input type="radio" id="opertion_sys" name="opertion_sys" value="Windows"#}
+{#                                           {% if invite.opertion_sys == 'Windows' %}checked{% endif %}> Windows#}
+{#                                    <input type="radio" id="opertion_sys" name="opertion_sys" value="MacOS"#}
+{#                                           {% if invite.opertion_sys == 'MacOS' %}checked{% endif %}> MacOS#}
+                                    {{ form.opertion_sys }}
+                                </div>
+
+                                <button type="submit" class="btn btn-primary">送出</button>
+                            </form>
+
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        <hr>
+
+        <footer class="text-center">
+            <div class="mb-2">
+                <small>
+                    © 2020 made with <i class="fa fa-heart" style="color:red"></i> by - <a target="_blank"
+                                                                                           rel="noopener noreferrer"
+                                                                                           href="https://azouaoui.netlify.com">
+                    Mohamed Azouaoui
+                </a>
+                </small>
+            </div>
+            <div>
+                <a href="https://github.com/azouaoui-med" target="_blank">
+                    <img alt="GitHub followers"
+                         src="https://img.shields.io/github/followers/azouaoui-med?label=github&style=social"/>
+                </a>
+                <a href="https://twitter.com/azouaoui_med" target="_blank">
+                    <img alt="Twitter Follow"
+                         src="https://img.shields.io/twitter/follow/azouaoui_med?label=twitter&style=social"/>
+                </a>
+            </div>
+        </footer>
+    </div>
+
+
+
+
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    {#<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"#}
+    {#        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"#}
+    {#        crossorigin="anonymous"></script>#}
+{% endblock %}

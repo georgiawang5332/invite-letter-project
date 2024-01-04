@@ -1,0 +1,581 @@
+<!--<link rel="stylesheet" href="{% static 'css/invite/style.css' %}">-->
+<!--<link rel="stylesheet" href="{% static 'js/invite/main.js' %}">-->
+
+{% extends 'index.html' %}
+{% load static %}
+
+{% block title %}
+    填寫{{ title }}
+{% endblock %}
+
+{% block content %}
+
+    <style media="screen">
+
+        * }
+            outline: 1px solid red;
+         }
+
+
+
+        .form-check .form-check-input {
+            margin-left: 0 !important;
+        }
+
+
+        textarea::placeholder {
+            padding-top: 15px;
+        }
+
+        .jumbotron {
+            margin-top: 0px;
+            margin-bottom: 0px;
+        }
+
+        .jumbotron h1 {
+            text-align: center;
+        }
+
+            從這邊開始
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: #454545;
+            font: 400 50% "economica", sans-serif;
+            min-width: 30em;
+        }
+
+        h2, h3 {
+            margin: 0 0 0.375rem 0;
+        }
+
+        h3 {
+            margin-top: 1.5rem;
+        }
+
+        .subtitle {
+            font-style: italic;
+            font-weight: 400;
+            font-size: 0.875em;
+            color: #898989;
+            margin: 0 0 0.25em;
+        }
+
+        .card {
+            border: 0.75rem solid #454545;
+            max-width: 36em;
+            margin: 1.5em auto;
+        }
+
+        .heading {
+            font-weight: 700;
+        }
+
+        .super-heading, .title {
+            display: inline-block;
+            color: #f5f5f5;
+            background: #454545;
+            text-transform: uppercase;
+        }
+
+        .super-heading {
+            font-size: 1.75em;
+            font-style: italic;
+            padding: 0 0.5em 0.125em 0.125em;
+            margin: 1em 0 0.125em;
+            line-height: 1.25;
+        }
+
+        .title {
+            margin: 0 0 0.125em;
+            padding-right: 0.125em;
+            font-size: 7.5em;
+            line-height: 1;
+        }
+
+        .mirrored {
+            display: inline-block;
+            transform: matrix(-1, 0, 0, 1, 0, 0);
+        }
+
+        .party-address {
+            padding: 0.125em 0;
+            font-style: normal;
+            text-align: center;
+            border-width: 0.125em 0;
+            border-style: solid;
+            border-color: #454545;
+        }
+
+        .party-address > p {
+            display: inline-block;
+            margin: 0 1em;
+        }
+
+        .party-date {
+            display: block;
+            border-bottom: 0.125em solid #454545;
+            text-align: center;
+            margin: 0 0 0.5em;
+        }
+
+        .party-month, .party-day {
+            display: inline-block;
+            vertical-align: baseline;
+            font-weight: 700;
+        }
+
+        .party-month {
+            font-size: 6em;
+            line-height: 1.25;
+            margin-left: 0.25em;
+        }
+
+        .text-capitalize {
+            text-transform: capitalize;
+        }
+
+        .party-day {
+            line-height: 1;
+            font-size: 9em;
+        }
+
+        .party-day sup {
+            font-size: 0.25em;
+            top: -2em;
+        }
+
+        form }
+            padding: 2.4em 0.75em 0.75em;
+         }
+
+        input[type=radio] {
+            margin-right: 0.25em;
+        }
+
+        -------------------bringing------------------------
+        .radio-bringing--yes:checked ~ .is_bringing {
+            display: block;
+        }
+
+        .radio-coming--yes:checked ~ .bringing-form .bringing {
+            display: block;
+        }
+
+        .label-coming--yes, .label-bringing--yes {
+            margin-right: 1.5em;
+        }
+
+        -------------------givemoney------------------------
+        .radio-givemoney--yes:checked ~ .is_givemoney {
+            display: block;
+        }
+
+        .radio-givemoney--yes:checked ~ .givemoney-form .givemoney {
+            display: block;
+        }
+
+        .label-givemoney--yes, .label-givemoney--yes {
+            margin-right: 1.5em;
+        }
+
+        -------------------notattending------------------------
+        .radio-notattending--yes:checked ~ .is_notattending {
+            display: block;
+        }
+
+        .radio-notattending--yes:checked ~ .notattending-form .notattending {
+            display: block;
+        }
+
+        .label-notattending--yes, .label-notattending--yes {
+            margin-right: 1.5em;
+        }
+
+        .bringing {
+            display: none;
+            border: none;
+            padding: 0;
+        }
+
+        .is_bringing {
+            display: none;
+            padding-left: 1.5em;
+            border: none;
+        }
+
+        .givemoney {
+            display: none;
+            border: none;
+            padding: 0;
+        }
+
+        .is_givemoney {
+            display: none;
+            padding-left: 1.5em;
+            border: none;
+        }
+
+        .notattending {
+            display: none;
+            border: none;
+            padding: 0;
+        }
+
+        .is_notattending {
+            display: none;
+            padding-left: 1.5em;
+            border: none;
+        }
+
+        input[type=text] {
+            width: 100%;
+            margin: 0 0 0.5em;
+            -webkit-appearance: none;
+            border-radius: 0;
+            border: 0.0675em solid #898989;
+            padding: 0.25em 0.375em;
+            color: #454545;
+        }
+
+        input[type=text]:disabled {
+            color: #898989;
+        }
+
+        .send-card-button {
+            display: block;
+            margin: 1.5em auto 0;
+            border: none;
+            background-color: #454545;
+            padding: 0.25em 0.5em 0.5em;
+            color: #f5f5f5;
+            font-size: 1.5em;
+        }
+
+        .send-card-button:hover {
+            color: tomato;
+        }
+
+        .send-card-button.sent {
+            pointer-events: none;
+        }
+
+        .thank-you {
+            text-align: center;
+            margin: 1.5em 0 0 0;
+        }
+
+        @media only screen and (min-width: 48em) {
+            body {
+                font-size: 1em;
+            }
+
+            .card {
+                max-width: 56em;
+            }
+
+            .card:after {
+                content: "";
+                display: table;
+                clear: both;
+            }
+
+            .column {
+                float: left;
+            }
+
+            .party-address {
+                margin: 2.4em 0 1.5em;
+            }
+
+            .party-date {
+                border: none;
+            }
+        }
+
+            從這邊結束
+        input form start
+        .mb-3 {
+            margin-bottom: 1rem !important;
+        }
+
+        .input-group {
+            position: relative;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: stretch;
+            width: 100%;
+        }
+
+        .input-group-prepend {
+            margin-right: -1px;
+        }
+
+        .inputicon {
+        outline: 1px solid red; background-color: #777;
+            color: white;
+            padding: 1px;
+            font-size: 20px;
+            /* font-family: "Roboto"; */
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px;
+            border: solid 1px #777;
+            margin-bottom: 3px;
+            display: inline-block;
+        }
+
+        input[type=text], .radio-div {
+            display: inline-block;
+            width: 75%;
+            padding: 5px;
+            /* font-family: "Roboto"; */
+            border: solid 1px #777;
+            outline: 0;
+            font-size: 15px;
+            text-align: left;
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px;
+            margin-bottom: 3px;
+        }
+
+        .fa {
+            padding: 10px !important;
+            width: 40px !important;
+            margin: 5px 2px !important;
+        }
+
+        p {
+            margin-top: 0;
+            margin-bottom: 1rem;
+            text-align: left;
+        }
+
+        .h12 {
+            font-size: 12px;
+        }
+
+        input[type=text], .radio-div {
+            padding: 0 !important;
+        }
+
+
+        input form start
+    </style>
+    <div class="jumbotron" style="margin-bottom:0px;">
+        <h1 class="display-4">Hello, 婚禮參加問卷</h1>
+        <p class="lead">歡迎來到大雄跟瀞香婚宴</p>
+        <hr class="my-4">
+
+        <div class="card">
+            <div class="column">
+                <header class="heading">
+                    <div class="super-heading">Your pleasant presence is requested!</div>
+                    <h1 class="title">I
+                        <div class="mirrored">n</div>
+                        vitatio
+                        <div class="mirrored">n</div>
+                    </h1>
+                </header>
+
+                <address class="party-address">
+                    <p><i class="icon-map-marker"></i> 敬業三路20號</p>
+                    <p><i class="icon-phone"></i> 02 2175 3456</p>
+                </address>
+
+                <time class="party-date">
+                    <div class="party-day">18<sup>th</sup></div>
+                    <div class="party-month text-capitalize">august</div>
+                </time>
+            </div><!-- column left -->
+
+            <section class="column">
+                <h2>您會參加婚宴嗎?</h2>
+                <input type="radio" name="coming" value="yes" id="comingYes" class="radio-coming--yes" checked/>
+                <label for="comingYes" class="label-coming--yes">當然, 準時出席!</label>
+
+                <input type="radio" name="coming" value="money-yes" id="givemoneyYes" class="radio-givemoney--yes"/>
+                <label for="givemoneyYes" class="label-givemoney--yes">無法出席，但禮到情意在!</label>
+
+                <input type="radio" name="coming" value="no" id="notattendingNo" class="radio-notattending--yes"/>
+                <label for="notattendingNo" class="label-notattending--no">抱歉, 不克前去</label>
+
+                <form method="POST" action="{% url 'invite:questionclick_view' %}" id="theFormA" class="bringing-form">
+                    {% csrf_token %}
+                    <fieldset class="bringing">
+                        <h3>會攜伴參加嗎?</h3>
+                        <input type="radio" name="bringing" id="bringingYes" value="yes" style="display: none"
+                               class="radio-bringing--yes"
+                               checked/>
+                        <label for="bringingYes" class="label-bringing--yes" style="display: none">Yes!</label>
+                        <div class="is_bringing" id="bringing">
+                            <h4>快點來參加! 幫我填寫參加人姓名!!!</h4>
+                            <p class="subtitle">歡迎大家共襄盛舉!!!</p>
+
+                            <div class="is_personal-info" id="personal-info">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                    <span class="inputicon" id="pencil1">
+                                        <i class="fa fa-pencil fa-fw fa-lg" aria-hidden="true"></i>
+                                        <img src="{% static 'image/pencil.png' %}" width="45" height="45">
+                                    </span>
+                                    </div>
+                                    <input name="name" type="text" placeholder="姓名" aria-label="Username"
+                                           aria-describedby="invite-attend1">
+                                </div>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                    <span class="inputicon" id="phone1">
+                                        <i class="fa fa-phone fa-fw fa-lg" aria-hidden="true"></i>
+                                        <img src="{% static 'image/phone.png' %}" width="45" height="45">
+                                    </span>
+                                    </div>
+                                    <input name="phone" type="text" placeholder="連絡電話" aria-label="Phone"
+                                           aria-describedby="invite-attend2">
+                                </div>
+                                <p class="h12">希望以什麼方式收到喜帖? (擇一填寫)</p>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                <span class="inputicon" id="map-marker1">
+                                    <i class="fa fa-map-marker fa-fw fa-lg" aria-hidden="true"></i>
+                                    <img src="{% static 'image/placeholder.png' %}" width="45" height="45">
+                                </span>
+                                    </div>
+                                    <input name="address" type="text"
+                                           placeholder="請輸入地址&nbsp;&nbsp;ex: 104 台北市敬業路三段5號10樓"
+                                           aria-label="address" aria-describedby="invite-attend3-1">
+                                </div>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                <span class="inputicon" id="envelope1">
+                                    <i class="fa fa-envelope-o fa-fw fa-lg" aria-hidden="true"></i>
+                                    <img src="{% static 'image/address.png' %}" width="45" height="45">
+                                </span>
+                                    </div>
+                                    <input name="email" type="text"
+                                           placeholder="請輸入郵件帳號&nbsp;&nbsp;ex: abc123@gmail.com"
+                                           aria-label="E-mail" aria-describedby="invite-attend3-2">
+                                </div>
+
+                                <p class="h12">請問認識新人哪一位?</p>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                    <span class="inputicon" id="user-o1">
+                                        <i class="fa fa-user-o fa-fw fa-lg" aria-hidden="true"></i>
+                                        <img src="{% static 'image/user.png' %}" width="45" height="45">
+
+                                    </span>
+                                    </div>
+                                    <div class="radio-div" style="display: flex; align-items: center;">
+                                        <div class="form-check form-check-inline">
+                                            <input name="know" value="新郎" class="form-check-input" type="radio"
+                                                   id="invite-attend4-1">
+                                            <label class="form-check-label" for="inlineRadio1">
+                                                                                                <i class="fa fa-male" aria-hidden="true"></i>
+                                                新郎
+                                            </label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input name="know" value="新娘" class="form-check-input" type="radio"
+                                                   id="invite-attend4-2">
+                                            <label class="form-check-label" for="inlineRadio2">
+                                                                                                <i class="fa fa-female" aria-hidden="true"></i>
+                                                新娘
+                                            </label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input name="know" value="共同朋友" class="form-check-input" type="radio"
+                                                   id="invite-attend4-3">
+                                            <label class="form-check-label" for="inlineRadio3">
+                                                                                                <i class="fa fa-users" aria-hidden="true"></i>
+                                                共同朋友
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="h12">您選擇飲食是?</p>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                <span class="inputicon" id="diet1">
+                                    <i class="fa fa-cutlery fa-fw fa-lg" aria-hidden="true"></i>
+                                    <img src="{% static 'image/diet.png' %}" width="45" height="45">
+
+                                </span>
+                                    </div>
+                                    <div class="radio-div" style="display: flex; align-items: center;">
+                                        <div class="form-check form-check-inline">
+                                            <input name="diet" value="葷食" class="form-check-input" type="radio"
+                                                   id="invite-attend5-1">
+                                            <label class="form-check-label" for="inlineRadio1">葷食</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input name="diet" value="素食" class="form-check-input" type="radio"
+                                                   id="invite-attend5-2">
+                                            <label class="form-check-label" for="inlineRadio2">素食</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="h12">您需要嬰兒座椅?</p>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                <span class="inputicon" id="babychair1">
+                                    <img src="{% static 'image/high-chair.png' %}" width="45" height="45">
+                                </span>
+                                    </div>
+                                    <div class="radio-div" style="display: flex; align-items: center;">
+                                        <div class="form-check form-check-inline">
+                                            <input name="baby_seat" value="0" class="form-check-input" type="radio"
+                                                   id="inlineRadio0">
+                                            <label class="form-check-label" for="inlineRadio0">0</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input name="baby_seat" value="1" class="form-check-input" type="radio"
+                                                   id="inlineRadio1">
+                                            <label class="form-check-label" for="inlineRadio1">1</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input name="baby_seat" value="2" class="form-check-input" type="radio"
+                                                   id="inlineRadio2">
+                                            <label class="form-check-label" for="inlineRadio2">2</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input name="baby_seat" value="3" class="form-check-input" type="radio"
+                                                   id="inlineRadio3">
+                                            <label class="form-check-label" for="inlineRadio3">3</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input name="baby_seat" value="4" class="form-check-input" type="radio"
+                                                   id="inlineRadio4">
+                                            <label class="form-check-label" for="inlineRadio4">4</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <input name="bringing" type="radio" value="no" id="bringingNo" class="radio-bringing--no"
+                               style="display: none;"/>
+                        <label for="bringingNo" class="label-bringing--no" style="display: none">沒有， 我一人去參加喜宴。</label>
+
+                        <div class="mb-3">
+                            <button class="send-card-button" id="theButtonA">Alrighty!</button>
+                            <div id="thankyou" class="thank-you"></div>
+                        </div>
+                    </fieldset>
+                </form>
+
+                {% include 'invite/givemoneyclick.html' %}
+                {% include 'invite/notattendclick.html' %}
+
+
+            </section><!-- column right -->
+        </div><!-- card -->
+
+
+    </div>
+{% endblock %}

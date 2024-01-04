@@ -1,0 +1,196 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    輸入{{ title }}
+{% endblock %}
+
+{% block content %}
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+
+    <style>
+        table.dataTable thead {
+            background: linear-gradient(to right, #4A00E0, #8E2DE2);
+        {#color: white;#}
+        }
+
+        div.dataTables_wrapper {
+            width: 800px;
+            margin: 0 auto;
+        }
+    </style>
+
+    <div class="page-content">
+        <div class="container-fluid">
+            <h2 class="my-4">{{ title }}</h2>
+            <hr>
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <p> You can find the complete code on <a href="https://github.com/azouaoui-med/pro-sidebar-template"
+                                                             target="_blank">
+                        Github</a>, it contains more themes and background image option</p>
+                </div>
+
+
+            </div>
+            <h5>More templates</h5>
+            <hr>
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-12">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="table-responsive-xl w-100">
+                                <table id="example" class="display nowrap" style="width:100%">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">編號</th>
+                                        <th scope="col">真實姓名</th>
+                                        <th scope="col">電話</th>
+                                        <th scope="col">地址</th>
+                                        <th scope="col">郵件信箱</th>
+                                        <th scope="col">認識新人</th>
+                                        <th scope="col">飲食習慣</th>
+                                        <th scope="col">嬰兒座椅</th>
+                                        <th scope="col">建立時間</th>
+                                        <th scope="col">編輯時間</th>
+                                        <th scope="col">狀態</th>
+                                        <th scope="col">系統作業</th>
+                                        <th scope="col">其他</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for invite in invitations %}
+                                        <tr>
+                                            <td scope="row">{{ invite.autono }}</td>
+                                            <td>{{ invite.name }}</td>
+                                            <td>{{ invite.phone }}</td>
+                                            <td>{{ invite.address }}</td>
+                                            <td>{{ invite.email }}</td>
+                                            <td>{{ invite.know }}</td>
+                                            <td>{{ invite.diet }}</td>
+                                            <td>{{ invite.baby_seat }}</td>
+                                            <td>{{ invite.created_at }}</td>
+                                            <td>{{ invite.updated_at }}</td>
+                                            <td>{{ invite.status }}</td>
+                                            <td>{{ invite.opertion_sys }}</td>
+                                            <td>
+                                                <button class="btn btn-info"><a class="text-white"
+                                                                                href="{% url 'invite:invite_detail' pk=invite.pk %}">詳閱</a>
+                                                </button>
+                                                <button class="btn btn-warning"><a class="text-white"
+                                                                                   href="{% url 'invite:invite_edit' pk=invite.pk %}">編輯</a>
+                                                </button>
+                                                <button class="btn btn-danger"><a class="text-white"
+                                                                                  href="{% url 'invite:invite_delete' pk=invite.pk %}">刪除</a>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    {% empty %}
+                                        <tr>
+                                            <th>尚未添加邀請函。</th>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                    <tfoot>
+                                    <tr>
+                                        <th scope="col">編號</th>
+                                        <th scope="col">真實姓名</th>
+                                        <th scope="col">電話</th>
+                                        <th scope="col">地址</th>
+                                        <th scope="col">郵件信箱</th>
+                                        <th scope="col">認識新人</th>
+                                        <th scope="col">飲食習慣</th>
+                                        <th scope="col">嬰兒座椅</th>
+                                        <th scope="col">建立時間</th>
+                                        <th scope="col">編輯時間</th>
+                                        <th scope="col">狀態</th>
+                                        <th scope="col">系統作業</th>
+                                        <th scope="col">其他</th>
+                                    </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        <hr>
+
+        <footer class="text-center">
+            <div class="mb-2">
+                <small>
+                    © 2020 made with <i class="fa fa-heart" style="color:red"></i> by - <a target="_blank"
+                                                                                           rel="noopener noreferrer"
+                                                                                           href="https://azouaoui.netlify.com">
+                    Mohamed Azouaoui
+                </a>
+                </small>
+            </div>
+            {#            <div>#}
+            {#                <a href="https://github.com/azouaoui-med" target="_blank">#}
+            {#                    <img alt="GitHub followers"#}
+            {#                         src="https://img.shields.io/github/followers/azouaoui-med?label=github&style=social"/>#}
+            {#                </a>#}
+            {#                <a href="https://twitter.com/azouaoui_med" target="_blank">#}
+            {#                    <img alt="Twitter Follow"#}
+            {#                         src="https://img.shields.io/twitter/follow/azouaoui_med?label=twitter&style=social"/>#}
+            {#                </a>#}
+            {#            </div>#}
+        </footer>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#example').DataTable(
+                {
+                    scrollY: 200,
+                    scrollX: true,
+                }
+            );
+        });
+
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+{% endblock %}
+
+
+
+<table class="table table-hover" id="dev-table">
+    <thead>
+    <tr>
+
+        <th>姓名</th>
+        <th>Profile Picture頭像</th>
+        <th>Mobile移動的</th>
+        <th>Address地址</th>
+        <th>Update更新</th>
+        <th>Delete刪除</th>
+    </tr>
+    </thead>
+    {% for t in students %}
+        <tr>
+            <td> {{ t.get_name }}</td>
+            <td><img src="{% static t.profile_pic.url %}" alt="Profile Pic" height="40px" width="40px"/>
+            </td>
+            <td>{{ t.mobile }}</td>
+            <td>{{ t.address }}</td>
+            <td>
+                <a class="btn btn-primary btn-xs" href="{% url 'update-student' t.id %}"><span
+                        class="glyphicon glyphicon-edit"></span>
+                </a>
+            </td>
+            <td>
+                <a class="btn btn-danger btn-xs" href="{% url 'delete-student' t.id %}"><span
+                        class="glyphicon glyphicon-trash"></span>
+                </a>
+            </td>
+        </tr>
+    {% endfor %}
+</table>

@@ -1,0 +1,939 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    填寫{{ title }}
+{% endblock %}
+
+{% block content %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+    <style>
+        {#@import "compass/css3";#}
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: #454545;
+            font: 400 75%/1.5 "economica", sans-serif;
+            min-width: 30em;
+        }
+
+        h2, h3 {
+            margin: 0 0 0.375rem 0;
+        }
+
+        h3 {
+            margin-top: 1.5rem;
+        }
+
+        .subtitle {
+            font-style: italic;
+            font-weight: 400;
+            font-size: 0.875em;
+            color: #898989;
+            margin: 0 0 0.25em;
+        }
+
+        .card {
+            border: 0.75rem solid #454545;
+            max-width: 36em;
+            margin: 1.5em auto;
+        }
+
+        .heading {
+            font-weight: 700;
+        }
+
+        .super-heading, .title {
+            display: inline-block;
+            color: #f5f5f5;
+            background: #454545;
+            text-transform: uppercase;
+        }
+
+        .super-heading {
+            font-size: 1.75em;
+            font-style: italic;
+            padding: 0 0.5em 0.125em 0.125em;
+            margin: 1em 0 0.125em;
+            line-height: 1.25;
+        }
+
+        .title {
+            margin: 0 0 0.125em;
+            padding-right: 0.125em;
+            font-size: 3em;
+            line-height: 1;
+            padding: 5px;
+        }
+
+        .mirrored {
+            background-color: #454545;
+            display: inline-block;
+            transform: matrix(-1, 0, 0, 1, 0, 0);
+        }
+
+        .party-address {
+            padding: 0.125em 0;
+            font-style: normal;
+            text-align: center;
+            border-width: 0.125em 0;
+            border-style: solid;
+            border-color: #454545;
+        }
+
+        .party-address > p {
+            display: inline-block;
+            margin: 0 1em;
+        }
+
+        .party-date {
+            display: block;
+            border-bottom: 0.125em solid #454545;
+            text-align: center;
+            margin: 0 0 0.5em;
+        }
+
+        .party-month, .party-day {
+            display: inline-block;
+            vertical-align: baseline;
+            font-weight: 700;
+        }
+
+        .party-month {
+            font-size: 6em;
+            line-height: 1.25;
+            margin-left: 0.25em;
+        }
+
+        .party-day {
+            line-height: 1;
+            font-size: 9em;
+        }
+
+        .party-day sup {
+            font-size: 0.25em;
+            top: -2em;
+        }
+
+        form {
+            padding: 2.4em 0.75em 0.75em;
+        }
+
+        input[type=radio] {
+            margin-right: 0.25em;
+        }
+
+        {#     禮到心意在，人未出席 start      #}
+        .radio-personal-info--yes:checked ~ .is_personal-info {
+            display: block;
+        }
+
+        .radio-coming--yes:checked ~ .personal-info {
+            display: block;
+        }
+
+        {#     禮到心意在，人未出席 end       #}
+
+        {#     不會, 抱歉不克前去 start       #}
+
+        {#     不會, 抱歉不克前去 rnd       #}
+
+        .radio-bringing--yes:checked ~ .is_bringing {
+            display: block;
+        }
+
+        .radio-coming--yes:checked ~ .bringing {
+            display: block;
+        }
+
+        .label-coming--yes, .label-bringing--yes {
+            margin-right: 1.5em;
+        }
+
+        {# 包禮金，人未出席 start #}
+        .radio-givemoney--yes:checked ~ .is_givemoney {
+            display: block;
+        }
+
+        .radio-givemoney--yes:checked ~ .personal-info-givemoney {
+            display: block;
+        }
+
+        {# 包禮金，人未出席 end #}
+
+        .bringing {
+            display: none;
+            border: none;
+            padding: 0;
+        }
+
+        .is_bringing {
+            display: none;
+            padding-left: 1.5em;
+            border: none;
+        }
+
+        .personal-info {
+            display: none;
+            border: none;
+            padding: 0;
+        }
+
+        .is_personal-info {
+            display: none;
+            padding-left: 1.5em;
+            border: none;
+        }
+
+        .personal-info-givemoney {
+            display: none;
+            border: none;
+            padding: 0;
+        }
+
+        .is_givemoney {
+            display: none;
+            padding-left: 1.5em;
+            border: none;
+        }
+
+        .is_not_givemoney {
+            display: none;
+            padding-left: 1.5em;
+            border: none;
+        }
+
+        .subtitle {
+            font-style: italic;
+            font-weight: 400;
+            font-size: 0.875em;
+            color: #898989;
+            margin: 0 0 0.25em;
+        }
+
+        input[type=text] {
+            width: 100%;
+            margin: 0 0 0.5em;
+            -webkit-appearance: none;
+            border-radius: 0;
+            border: 0.0675em solid #898989;
+            padding: 0.25em 0.375em;
+            color: #454545;
+        }
+
+        input[type=text]:disabled {
+            color: #898989;
+        }
+
+        .send-card-button {
+            display: block;
+            margin: 1.5em auto 0;
+            border: none;
+            background-color: #454545;
+            padding: 0.25em 0.5em 0.5em;
+            color: #f5f5f5;
+            font-size: 1.5em;
+        }
+
+        .send-card-button:hover {
+            color: tomato;
+        }
+
+        .send-card-button.sent {
+            pointer-events: none;
+        }
+
+        .thank-you {
+            text-align: center;
+            margin: 1.5em 0 0 0;
+        }
+
+        @media only screen and (min-width: 48em) {
+            body {
+                font-size: 1em;
+            }
+
+            .card {
+                max-width: 56em;
+            }
+
+            .card:after {
+                content: "";
+                display: table;
+                clear: both;
+            }
+
+            .column {
+                float: left;
+            }
+
+        {#.column.left {#}
+        {#    width: 66.6666%;#}
+        {#    border-right: 0.125em solid #454545;#}
+        {# }#}
+
+        {#.column.right {#}
+        {#    width: 33.3334%;#}
+        {# }#}
+
+            .party-address {
+                margin: 2.4em 0 1.5em;
+            }
+
+            .party-date {
+                border: none;
+            }
+        }
+
+    </style>
+
+
+
+    <div class="page-content">
+        <div class="container-fluid">
+            <h2>{{ title }}</h2>
+            <hr>
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-12">
+                    <!--Django Model Form-->
+                    <h2 class="my-4">Add a new project</h2>
+                    <div class="card">
+                        <div class="column">
+                            <header class="heading">
+                                <div class="super-heading">期待您蒞臨我們的大囍之日，家有囍事與您共同見證!!</div>
+                                <h1 class="title">I
+                                    <div class="mirrored">n</div>
+                                    vitatio
+                                    <div class="mirrored">n</div>
+                                    <div class="title">囍♡邀請函</div>
+                                </h1>
+                            </header>
+
+                            <address class="party-address">
+                                <p><i class="icon-map-marker"></i> 台北市中山區樂群二路199號 (與敬業四路交叉口)</p>
+                                <p><i class="icon-phone"></i> 02 8502 9999</p>
+                            </address>
+
+                            <time class="party-date">
+                                <div class="party-day">18<sup>th</sup></div>
+                                <div class="party-month">august</div>
+                            </time>
+                        </div><!-- column left -->
+
+                        <section class="column">
+                            <form id="theForm">
+                                <h2>您會出席婚宴嗎?</h2>
+                                <input type="radio" name="coming" value="yes" id="comingYes" class="radio-coming--yes"
+                                       checked/>
+                                <label for="comingYes" class="label-coming--yes">會的，準時參加</label>
+
+                                <input type="radio" name="coming" value="givemoney" id="comingGiveMoney"
+                                       class="radio-givemoney--yes">
+                                <label for="comingGiveMoney" class="label-givemoney--yes h13">禮到心意在，人未出席</label>
+
+                                <input type="radio" name="coming" value="no" id="comingNo" class="radio-coming--no"/>
+                                <label for="comingNo" class="label-coming--no">不會, 抱歉不克前去</label>
+
+
+                                {#fieldset - 第一個 - 會出席婚宴 #}
+                                <fieldset class="personal-info">
+                                    <p class="subtitle">☆&nbsp;會出席婚宴者，請幫我填個人資料!</p>
+                                    <input type="radio" name="personal-info" id="personal-info-YesID" value="yes"
+                                           class="radio-personal-info--yes" checked/>
+                                    <label for="personal-info-Yes"
+                                           class="label-personal-info--yes h13">好的，個人資料會填妥好提交</label>
+                                    <div class="is_personal-info" id="personal-info">
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                    <span class="inputicon" id="basic-addon1">
+                                        <i class="fa fa-pencil fa-fw fa-lg"></i>
+                                    </span>
+                                            </div>
+                                            <input type="text" class="" placeholder="姓名" aria-label="Username"
+                                                   aria-describedby="basic-addon1">{{ comeinfo.ComeName }}
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                    <span class="inputicon" id="basic-addon1"><i
+                                            class="fa fa-phone fa-fw fa-lg"></i></span>
+                                            </div>
+                                            <input type="text" class="" placeholder="連絡電話" aria-label="Phone"
+                                                   aria-describedby="basic-addon1">{{ comeinfo.ComePhone }}
+                                        </div>
+                                        <p class="h12">希望以什麼方式收到喜帖? (擇一填寫)</p>
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                <span class="inputicon" id="basic-addon1"><i
+                                        class="fa fa-map-marker fa-fw fa-lg"></i></span>
+                                            </div>
+                                            <input type="text" class=""
+                                                   placeholder="請輸入地址&nbsp;&nbsp;ex: 104 台北市敬業路三段5號10樓"
+                                                   aria-label="address"
+                                                   aria-describedby="basic-addon1">{{ comeinfo.ComeAddress }}
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                <span class="inputicon" id="basic-addon1"><i
+                                        class="fa fa-envelope-o fa-fw fa-lg"></i></span>
+                                            </div>
+                                            <input type="text" class=""
+                                                   placeholder="請輸入郵件帳號&nbsp;&nbsp;ex: abc123@gmail.com"
+                                                   aria-label="E-mail"
+                                                   aria-describedby="basic-addon1">{{ comeinfo.ComeEmail }}
+                                        </div>
+
+                                        <p class="h12">請問認識新人哪一位?</p>
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                    <span class="inputicon" id="basic-addon1"><i
+                                            class="fa fa-user-o fa-fw fa-lg"></i>
+                                    </span>
+                                            </div>
+                                            <div class="radio-div" style="display: flex; align-items: center;">
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio"
+                                                           name="inlineRadioOptions_1"
+                                                           id="inlineRadio1" value="option1">{{ comeinfo.ComeKnow }}
+                                                    <label class="form-check-label" for="inlineRadio1">
+                                                        <i class="fa fa-male" aria-hidden="true"></i>新郎</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio"
+                                                           name="inlineRadioOptions_1"
+                                                           id="inlineRadio2" value="option2">{{ comeinfo.ComeKnow }}
+                                                    <label class="form-check-label" for="inlineRadio2">
+                                                        <i class="fa fa-female" aria-hidden="true"></i>新娘
+                                                    </label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio"
+                                                           name="inlineRadioOptions_1"
+                                                           id="inlineRadio3" value="option3">{{ comeinfo.ComeKnow }}
+                                                    <label class="form-check-label" for="inlineRadio3">
+                                                        <i class="fa fa-users" aria-hidden="true"></i>共同朋友</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <p class="h12">您選擇飲食是?</p>
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="inputicon" id="basic-addon1"><i
+                                                        class="fa fa-cutlery fa-fw fa-lg"></i></span>
+                                            </div>
+                                            <div class="radio-div" style="display: flex; align-items: center;       ">
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio"
+                                                           name="inlineRadioOptions_2"
+                                                           id="inlineRadio1"
+                                                           value="option1">{{ comeinfo.ComeEatHabits }}
+                                                    <label class="form-check-label" for="inlineRadio1">葷食</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio"
+                                                           name="inlineRadioOptions_2"
+                                                           id="inlineRadio2"
+                                                           value="option2">{{ comeinfo.ComeEatHabits }}
+                                                    <label class="form-check-label" for="inlineRadio2">素食</label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <input type="radio" name="personal-info" id="personal-info-NoID" value="no"
+                                           class="radio-personal-info--no"/>
+                                    <label for="personal-info-No" class="label-personal-info--no h13">不想填資料，由新郎/娘幫我決定一切。</label>
+
+                                    <div class="bringing">
+                                        <h4><b>您會攜伴參加嗎?</b></h4>
+                                        <p class="subtitle">會的話幫我填寫，出席者資訊 ...</p>
+                                        <input type="radio" name="bringing" value="yes" id="bringingYes"
+                                               class="radio-bringing--yes"
+                                               checked/>
+                                        <label for="bringingYes" class="label-bringing--yes h13">會的，我會攜伴參加</label>
+                                        <div class="is_bringing" id="bringing">
+                                            <p class="subtitle">歡迎共襄盛舉，共同見證這對新人之婚禮。</p>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                        <span class="inputicon" id="basic-addon1">
+                                            <i class="fa fa-plus fa-fw fa-lg"></i>
+                                        </span>
+                                                </div>
+                                                <input type="text" disabled="disabled" placeholder="新增出席人員名單"
+                                                       aria-label="plus-column"
+                                                       aria-describedby="basic-addon2"
+                                                       style="  border-top-right-radius: 0; border-bottom-right-radius: 0;">
+                                                <div class="input-group-append">
+                                                    <button type="button" class="btn btn-outline-secondary"
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#exampleModal"
+                                                            data-bs-whatever="@getbootstrap">+ 新增
+                                                    </button>
+                                                    <!-- Scrollable modal start -->
+                                                    <div class="modal fade" id="exampleModal" tabindex="-1"
+                                                         aria-labelledby="exampleModalLabel"
+                                                         aria-hidden="true">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="exampleModalLabel">
+                                                                        賓客新增(可多人or單人)</h5>
+                                                                    <button type="button" class="btn-close"
+                                                                            data-bs-dismiss="modal"
+                                                                            aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    {#                                                <div class="input-group mb-3">#}
+                                                                    {#                                                    <div class="input-group-prepend">#}
+                                                                    {#                                                    <span class="inputicon" id="basic-addon1">#}
+                                                                    {#                                                        <i class="fa fa-pencil fa-fw fa-lg"></i>#}
+                                                                    {#                                                    </span>#}
+                                                                    {#                                                    </div>#}
+                                                                    {#                                                    <input type="text" class="" placeholder="姓名"#}
+                                                                    {#                                                           aria-label="Username"#}
+                                                                    {#                                                           aria-describedby="basic-addon1">#}
+                                                                    {#                                                </div>#}
+
+                                                                    <div class="input-group mb-3">
+                                                                        <div class="input-group-prepend">
+                                                    <span class="inputicon" id="basic-addon1">
+                                                        <i class="fa fa-pencil fa-fw fa-lg"></i>
+                                                    </span>
+                                                                        </div>
+                                                                        <input type="text" name="persons" id="persons"
+                                                                               placeholder="ex: 林小明, 鄭小強, 鄭明, 鄭強"/>
+                                                                    </div>
+
+                                                                    <p>賓客選擇飲食是? (填上總人數 ex: 3，沒有就空格即可。)</p>
+                                                                    <div class="input-group mb-3">
+                                                                        <div class="input-group-prepend">
+                                                    <span class="inputicon" id="basic-addon1">
+                                                        <i class="fa fa-cutlery fa-fw fa-lg mt-5"></i>
+                                                    </span>
+                                                                        </div>
+                                                                        <div class="radio-div"
+                                                                             style="align-items: center;">
+                                                                            <div class="form-check form-check-inline">
+                                                                                <div class="group">
+                                                                                    <input type="text"
+                                                                                           class="group-inp food"
+                                                                                           required>
+                                                                                    <span class="highlight"></span>
+                                                                                    <span class="bar"></span>
+                                                                                    <label class="group-lab form-check-label"
+                                                                                           for="inlineRadio1">葷食</label>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-check form-check-inline">
+                                                                                <div class="group">
+                                                                                    <input type="text"
+                                                                                           class="group-inp food"
+                                                                                           required>
+                                                                                    <span class="highlight"></span>
+                                                                                    <span class="bar"></span>
+                                                                                    <label class="group-lab form-check-label"
+                                                                                           for="inlineRadio2">素食</label>
+                                                                                </div>
+                                                                            </div>
+
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <p>賓客需要幾張嬰兒座椅?</p>
+                                                                    <div class="input-group mb-3">
+                                                                        <div class="input-group-prepend">
+                                                                <span class="inputicon" id="basic-addon1">
+                                                                    <i class="fa fa-chevron-right fa-fw fa-lg"></i>
+                                                                </span>
+                                                                        </div>
+                                                                        <div class="radio-div"
+                                                                             style="display: flex; align-items: center;">
+                                                                            <div class="form-check form-check-inline">
+                                                                                <input class="form-check-input"
+                                                                                       type="radio"
+                                                                                       name="inlineRadioOptions_3"
+                                                                                       id="inlineRadio0"
+                                                                                       value="option0">
+                                                                                <label class="form-check-label"
+                                                                                       for="inlineRadio0">0</label>
+                                                                            </div>
+                                                                            <div class="form-check form-check-inline">
+                                                                                <input class="form-check-input"
+                                                                                       type="radio"
+                                                                                       name="inlineRadioOptions_3"
+                                                                                       id="inlineRadio1"
+                                                                                       value="option1">
+                                                                                <label class="form-check-label"
+                                                                                       for="inlineRadio1">1</label>
+                                                                            </div>
+                                                                            <div class="form-check form-check-inline">
+                                                                                <input class="form-check-input"
+                                                                                       type="radio"
+                                                                                       name="inlineRadioOptions_3"
+                                                                                       id="inlineRadio2"
+                                                                                       value="option2">
+                                                                                <label class="form-check-label"
+                                                                                       for="inlineRadio2">2</label>
+                                                                            </div>
+                                                                            <div class="form-check form-check-inline">
+                                                                                <input class="form-check-input"
+                                                                                       type="radio"
+                                                                                       name="inlineRadioOptions_3"
+                                                                                       id="inlineRadio3"
+                                                                                       value="option3">
+                                                                                <label class="form-check-label"
+                                                                                       for="inlineRadio3">3</label>
+                                                                            </div>
+                                                                            <div class="form-check form-check-inline">
+                                                                                <input class="form-check-input"
+                                                                                       type="radio"
+                                                                                       name="inlineRadioOptions_3"
+                                                                                       id="inlineRadio4"
+                                                                                       value="option4">
+                                                                                <label class="form-check-label"
+                                                                                       for="inlineRadio4">4</label>
+                                                                            </div>
+                                                                            <div class="form-check form-check-inline">
+                                                                                <input class="form-check-input"
+                                                                                       type="radio"
+                                                                                       name="inlineRadioOptions_3"
+                                                                                       id="inlineRadio5"
+                                                                                       value="option5">
+                                                                                <label class="form-check-label"
+                                                                                       for="inlineRadio5">5</label>
+                                                                            </div>
+                                                                            <div class="form-check form-check-inline">
+                                                                                <input class="form-check-input"
+                                                                                       type="radio"
+                                                                                       name="inlineRadioOptions_3"
+                                                                                       id="inlineRadio6"
+                                                                                       value="option6">
+                                                                                <label class="form-check-label"
+                                                                                       for="inlineRadio6">6</label>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    {#                                                <p>※ 可否讓我了解年齡區分呢?</p>#}
+                                                                    {#                                                <div class="input-group mb-3">#}
+                                                                    {#                                                    <div class="input-group-prepend">#}
+                                                                    {#                                                    <span class="inputicon" id="basic-addon1">#}
+                                                                    {#                                                        <i class="fa fa-male fa-fw fa-lg"></i>#}
+                                                                    {#                                                    </span>#}
+                                                                    {#                                                    </div>#}
+                                                                    {#                                                    <input type="text" name="Adults"#}
+                                                                    {#                                                           placeholder="滿七歲以上 參加人數"#}
+                                                                    {#                                                           aria-label="Phone"#}
+                                                                    {#                                                           aria-describedby="basic-addon1">#}
+                                                                    {#                                                </div>#}
+                                                                    {#                                                <div class="input-group mb-3">#}
+                                                                    {#                                                    <div class="input-group-prepend">#}
+                                                                    {#                                                    <span class="inputicon" id="basic-addon1">#}
+                                                                    {#                                                        <i class="fa fa-child fa-fw fa-lg"></i>#}
+                                                                    {#                                                    </span>#}
+                                                                    {#                                                    </div>#}
+                                                                    {#                                                    <input type="text" name="Kids" placeholder="未滿七歲以下 參加人數"#}
+                                                                    {#                                                           aria-label="Phone"#}
+                                                                    {#                                                           aria-describedby="basic-addon1">#}
+                                                                    {#                                                </div>#}
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary"
+                                                                            data-bs-dismiss="modal">
+                                                                        取消
+                                                                    </button>
+                                                                    <button type="button" class="btn btn-primary">確定新增
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Scrollable modal end -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <input type="radio" name="bringing" value="no" id="bringingNo"
+                                               class="radio-bringing--no"/>
+                                        <label for="bringingNo" class="label-bringing--no h13">不會，我自行前往</label>
+                                    </div>
+                                </fieldset>
+                                {#fieldset - 第一個 - 攜伴參加 #}
+                                <fieldset class="bringing">
+                                    <h3>您會攜伴參加嗎?</h3>
+                                    <input type="radio" name="bringing" id="bringingYes" value="yes"
+                                           class="radio-bringing--yes" checked/>
+                                    <label for="bringingYes" class="label-bringing--yes">會!</label>
+                                    <div class="is_bringing" id="bringing">
+                                        <h6>太棒了，歡迎蒞臨，攜伴者大名是?</h6>
+                                        <p class="subtitle">歡迎更多人前來參與!!!</p>
+                                        <input type="text" name="persons" id="persons"
+                                               placeholder="陳小美, 周玲玲, 葉小游"/>
+
+                                    </div>
+                                    <input type="radio" name="bringing" value="no" id="bringingNo"
+                                           class="radio-bringing--no"/>
+                                    <label for="bringingNo" class="label-bringing--no">不，我一位出席而已。</label>
+                                </fieldset>
+
+
+                                {#fieldset - 第二個 #}
+                                <fieldset class="personal-info-givemoney">
+                                    <p class="subtitle">☆&nbsp;禮金到人未到者，請幫我填個人資料!</p>
+                                    <input type="radio" name="givemoney" value="yes" id="givemoneyYes"
+                                           class="radio-givemoney--yes"
+                                           checked/>
+                                    <label for="givemoneyYes" class="label-givemoney--yes h13">禮金寄送方式選擇</label>
+
+                                    <div class="is_givemoney" id="givemoney">
+                                        {#                    <div class="input-group mb-3">#}
+                                        {#                        <div class="input-group-prepend">#}
+                                        {#                            <span class="inputicon" id="basic-addon1">#}
+                                        {#                                <i class="fa fa-pencil fa-fw fa-lg"></i>#}
+                                        {#                            </span>#}
+                                        {#                        </div>#}
+                                        {#                        <input type="text" class="" placeholder="姓名" aria-label="Username"#}
+                                        {#                               aria-describedby="basic-addon1">#}
+                                        {#                    </div>#}
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                            <span class="inputicon" id="basic-addon1">
+                                <i class="fa fa-pencil fa-fw fa-lg"></i>
+                            </span>
+                                            </div>
+                                            <input type="text" name="persons" id="persons"
+                                                   placeholder="ex: 林小明, 鄭小強, 鄭明, 鄭強"/>
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                    <span class="inputicon" id="basic-addon1"><i
+                                            class="fa fa-phone fa-fw fa-lg"></i></span>
+                                            </div>
+                                            <input type="text" class="" placeholder="連絡電話" aria-label="Phone"
+                                                   aria-describedby="basic-addon1">
+                                        </div>
+                                        <p class="h12">希望以什麼方式收到喜帖? (擇一填寫)</p>
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                <span class="inputicon" id="basic-addon1"><i
+                                        class="fa fa-map-marker fa-fw fa-lg"></i></span>
+                                            </div>
+                                            <input type="text" class=""
+                                                   placeholder="請輸入地址&nbsp;&nbsp;ex: 104 台北市敬業路三段5號10樓"
+                                                   aria-label="address"
+                                                   aria-describedby="basic-addon1">
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                <span class="inputicon" id="basic-addon1"><i
+                                        class="fa fa-envelope-o fa-fw fa-lg"></i></span>
+                                            </div>
+                                            <input type="text" class=""
+                                                   placeholder="請輸入郵件帳號&nbsp;&nbsp;ex: abc123@gmail.com"
+                                                   aria-label="E-mail"
+                                                   aria-describedby="basic-addon1">
+                                        </div>
+
+
+                                        <p class="h12">禮金付款方式?</p>
+                                        <div class="input-group mb-3 a">
+                                            <div class="container">
+                                                <div class="row g-2">
+                                                    <div class="col-6">
+                                                        <div class="p-3 border bg-light">
+                                                            <p>ATM 轉帳(臨櫃)匯款帳戶 :</p>
+                                                            <p>
+                                                                <span>中國信託 - 城東分行</span><br>
+                                                                <span>銀行代碼：822</span><br>
+                                                                <span>帳號：071540261312</span><br>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <div class="p-3 border bg-light">
+                                                            <span>郵局匯款(臨櫃)帳戶 :</span>
+                                                            <p>
+                                                                <span>銀行代號：700 (郵局)</span><br>
+                                                                <span>局號（含檢號）：1234567</span><br>
+                                                                <span>帳號（含檢號）：8901234</span><br>
+                                                                <span>戶名：陳阿鳩</span>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <p class="h12">運用地址寄送，後續再與我們提醒與通知: </p>
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                            <span class="inputicon" id="basic-addon1">
+                                <i class="fa fa-map-marker fa-fw fa-lg"></i>
+                            </span>
+                                            </div>
+                                            <input type="text" disabled="disabled" placeholder="地址: 10491台北市中山區敬業三路20號"
+                                                   aria-label="address"
+                                                   aria-describedby="basic-addon1">
+                                        </div>
+                                        <span>ATM或臨櫃匯款後通知，如下: </span>
+                                        <p class="h12">請 mail 到 信箱 並請在內容提供您的<br><span class="low-highlight">戶名(全名)、匯款日期、金額 以及您的 帳號末五碼</span>，謝謝!
+                                        </p>
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                            <span class="inputicon" id="basic-addon1"><i
+                                    class="fa fa-envelope-o fa-fw fa-lg"></i>
+                            </span>
+                                            </div>
+                                            <input type="text" disabled="disabled"
+                                                   placeholder="信箱: wleejan982@hotmail.com"
+                                                   aria-label="E-mail"
+                                                   aria-describedby="basic-addon1">
+                                        </div>
+
+
+                                    </div>
+
+                                    <input type="radio" name="givemoney" value="no" id="givemoneyNo"
+                                           class="radio-givemoney--no"/>
+                                    <label for="givemoneyNo" class="label-givemoney--no h13">禮金會委託給朋友/同事。</label>
+
+                                    <div class="is_not_givemoney" id="not_givemoney">
+                                        <div class="input-group mb-3">
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                            <span class="inputicon" id="basic-addon1">
+                                <i class="fa fa-pencil fa-fw fa-lg"></i>
+                            </span>
+                                                </div>
+                                                <input type="text" class="" placeholder="姓名" aria-label="Username"
+                                                       aria-describedby="basic-addon1">
+                                            </div>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                    <span class="inputicon" id="basic-addon1"><i
+                                            class="fa fa-phone fa-fw fa-lg"></i></span>
+                                                </div>
+                                                <input type="text" class="" placeholder="連絡電話" aria-label="Phone"
+                                                       aria-describedby="basic-addon1">
+                                            </div>
+                                            <p class="h12">希望以什麼方式收到喜帖? (擇一填寫)</p>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                <span class="inputicon" id="basic-addon1"><i
+                                        class="fa fa-map-marker fa-fw fa-lg"></i></span>
+                                                </div>
+                                                <input type="text" class=""
+                                                       placeholder="請輸入地址&nbsp;&nbsp;ex: 104 台北市敬業路三段5號10樓"
+                                                       aria-label="address"
+                                                       aria-describedby="basic-addon1">
+                                            </div>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                <span class="inputicon" id="basic-addon1"><i
+                                        class="fa fa-envelope-o fa-fw fa-lg"></i></span>
+                                                </div>
+                                                <input type="text" class=""
+                                                       placeholder="請輸入郵件帳號&nbsp;&nbsp;ex: abc123@gmail.com"
+                                                       aria-label="E-mail"
+                                                       aria-describedby="basic-addon1">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+
+                                <button class="send-card-button" id="theButton">送出</button>
+                                <div id="thankyou" class="thank-you"></div>
+                            </form>
+                        </section><!-- column right -->
+                    </div><!-- card -->
+
+                    <!--Django Model-->
+
+
+                </div>
+            </div>
+            <hr>
+            <br>
+
+            <footer class="text-center">
+                <div class="mb-2">
+                    <small>
+                        © 2020 made with <i class="fa fa-heart" style="color:red"></i> by - <a target="_blank"
+                                                                                               rel="noopener noreferrer"
+                                                                                               href="https://azouaoui.netlify.com">
+                        Mohamed Azouaoui
+                    </a>
+                    </small>
+                </div>
+                <div>
+                    <a href="https://github.com/azouaoui-med" target="_blank">
+                        <img alt="GitHub followers"
+                             src="https://img.shields.io/github/followers/azouaoui-med?label=github&style=social"/>
+                    </a>
+                    <a href="https://twitter.com/azouaoui_med" target="_blank">
+                        <img alt="Twitter Follow"
+                             src="https://img.shields.io/twitter/follow/azouaoui_med?label=twitter&style=social"/>
+                    </a>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
+            crossorigin="anonymous"></script>
+
+    <script>
+        var app = {
+            submitForm: function (event) {
+                "use strict";
+
+                var b = document.getElementById("theButton"),
+                    thank = document.getElementById("thankyou"),
+                    isComing = document.getElementById("comingYes").checked === true,
+                    isBringing = document.getElementById("bringingYes").checked === true,
+                    names = document.getElementById("persons").value.trim(),
+                    message = "",
+                    inputs = document.getElementsByTagName("input");
+
+                event.preventDefault();
+
+                b.innerHTML = "Sending...";
+                window.setTimeout(function () {
+                    b.innerHTML = "Thanks!";
+                    b.className += " sent";
+
+                    if (!isComing) {
+                        message = "Too bad you can't make it :(";
+                    } else {
+                        if (!isBringing) {
+                            message = "See you on the 18th then :)";
+                        } else if (names !== "") {
+                            message = "See you and " + names.split(", ").join(" and ") + " the 18th!";
+                        } else {
+                            message = "See you guys the 18th!";
+                        }
+                    }
+                    thank.innerHTML = message;
+
+                    for (var i = 0; i < inputs.length; i += 1) {
+                        inputs[i].setAttribute("disabled", true);
+                    }
+                }, 900);
+            },
+
+            init: function () {
+                "use strict";
+
+                document.getElementById("theForm").onsubmit = app.submitForm;
+            }
+        };
+
+        app.init();
+
+    </script>
+
+{% endblock %}

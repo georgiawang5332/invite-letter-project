@@ -1,0 +1,27 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+<head>
+    {% include '_includes/link.html' %}
+    <title>{% block head_title %}婚宴 Wedding Web | Dashboard {% endblock %}</title>
+</head>
+<body>
+
+{% block nav %}
+{% include '_includes/header.html' %}
+{% endblock nav %}
+
+<div class="main">
+    {% block content %}
+
+    {% endblock content %}
+</div>
+<!-- End Body -->
+
+{% block footer %}
+{% include '_includes/footer.html' %}
+{% endblock footer %}
+
+</body>
+</html>
+{% include '_includes/script.html' %}

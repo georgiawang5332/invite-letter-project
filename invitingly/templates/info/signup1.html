@@ -1,0 +1,128 @@
+{% extends 'basepage.html' %}
+{% load widget_tweaks %}
+
+{% block content %}
+
+<h3 style="text-align: center;color: red;">學生註冊</h3>
+<section class="hero is-fullheight">
+    <div class="hero-body">
+        <div class="container">
+            <div class="columns is-centered">
+                <div class="column is-5-tablet is-4-desktop is-3-widescreen">
+
+                    <form method="POST" action="." class="box">
+                        {% csrf_token %}
+
+                        <h1 class="has-text-centered mb-5 is-size-3">註冊543</h1>
+
+                        <div class="field">
+                            <label for="" class="label">Username</label>
+                            <div class="control has-icons-left">
+                                {{ form.username }}
+                                <span class="icon is-small is-left">
+                      <i class="fa fa-user"></i>
+                    </span>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label for="" class="label">Email</label>
+                            <div class="control has-icons-left">
+                                {{ form.email }}
+                                <span class="icon is-small is-left">
+                      <i class="fa fa-envelope"></i>
+                    </span>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label for="" class="label">Password</label>
+                            <div class="control has-icons-left">
+                                {{ form.password1 }}
+                                <span class="icon is-small is-left">
+                      <i class="fa fa-lock"></i>
+                    </span>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label for="" class="label">Confirm password</label>
+                            <div class="control has-icons-left">
+                                {{ form.password2 }}
+                                <span class="icon is-small is-left">
+                      <i class="fa fa-lock"></i>
+                    </span>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <button class="button is-success" type=submit>
+                                Signup
+                            </button>
+                        </div>
+                        <div class="field">
+                            Already registered ? <a href="">Login</a>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!--<form method="POST" autocomplete="off" enctype="multipart/form-data">-->
+<!--    {% csrf_token %}-->
+
+<!--    <div class="form-row">-->
+<!--        <div class="form-group col-md-6">-->
+<!--            <label for="mobile">使用者帳戶</label>-->
+<!--            {% render_field studentForm.username|attr:'required:true' class="form-control" placeholder="使用者帳戶" %}-->
+<!--        </div>-->
+<!--        <div class="form-group col-md-6">-->
+<!--            <label for="address">信箱</label>-->
+<!--            {% render_field studentForm.email|attr:'required:true' class="form-control" placeholder="信箱" %}-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    <div class="form-row">-->
+<!--        <div class="form-group col-md-6">-->
+<!--            <label for="first_name">First Name</label>-->
+<!--            {% render_field userForm.first_name|attr:'required:true' class="form-control" placeholder="First Name" %}-->
+<!--        </div>-->
+<!--        <div class="form-group col-md-6">-->
+<!--            <label for="last_name">Last Name</label>-->
+<!--            {% render_field userForm.last_name|attr:'required:true' class="form-control" placeholder="Last Name" %}-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    <div class="form-row">-->
+<!--        <div class="form-group col-md-6">-->
+<!--            <label for="mobile">Mobile</label>-->
+<!--            {% render_field studentForm.mobile|attr:'required:true' class="form-control" placeholder="Mobile" %}-->
+<!--        </div>-->
+<!--        <div class="form-group col-md-6">-->
+<!--            <label for="address">Address</label>-->
+<!--            {% render_field studentForm.address|attr:'required:true' class="form-control" placeholder="Address" %}-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    <div class="form-row">-->
+<!--        <div class="form-group col-md-6">-->
+<!--            <label for="mobile">User</label>-->
+<!--            {% render_field studentForm.user|attr:'required:true' class="form-control" placeholder="user" %}-->
+<!--        </div>-->
+<!--        <div class="form-group col-md-6">-->
+<!--            <label for="address">信箱</label>-->
+<!--            {% render_field studentForm.email|attr:'required:true' class="form-control" placeholder="email" %}-->
+<!--        </div>-->
+<!--    </div>-->
+
+
+<!--    <button type="submit" class="btn btn-primary">Sign Up</button>-->
+<!--</form>-->
+
+<br><br>
+{% endblock %}

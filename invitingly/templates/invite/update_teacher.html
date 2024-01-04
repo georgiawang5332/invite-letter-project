@@ -1,0 +1,65 @@
+{% extends 'quiz/adminbase.html' %}
+{% load widget_tweaks %}
+{% block content %}
+<head>
+  <style media="screen">
+    input[type=text], select,input[type=number] ,input[type=password], textarea{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
+  input[type=submit] {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  input[type=submit]:hover {
+    background-color: #45a049;
+  }
+
+
+  </style>
+
+
+</head>
+
+<br><br>
+<h3 style="text-align:center;">UPDATE TEACHER 更新老師</h3>
+<div>
+  <form method="post"  autocomplete="off" enctype="multipart/form-data" style="margin-left:200px;margin-right:200px;">
+      {% csrf_token %}
+        <label for="first_name">名</label>
+        {% render_field userForm.first_name class="form-control" placeholder="名" %}
+        <label for="last_name">姓氏</label>
+        {% render_field userForm.last_name class="form-control" placeholder="姓氏" %}
+          <label for="mobile">手機</label>
+          {% render_field teacherForm.mobile class="form-control" placeholder="ex: 0911123123" %}
+            <label for="address">地址</label>
+          {% render_field teacherForm.address class="form-control" placeholder="ex: 台北市中正區中華路一段39號10樓" %}
+
+        <label for="username">使用者名稱</label>
+        {% render_field userForm.username class="form-control" placeholder="ex: admin" %}
+          <label for="password">密碼</label>
+        {% render_field userForm.password class="form-control" placeholder="密碼" %} <br><br>
+        <label for="profile_pic">頭像</label>
+          {% render_field teacherForm.profile_pic class="form-control" placeholder="頭像" %}
+<br><br>
+    <input type="submit" value="Update">
+  </form>
+</div>
+
+
+
+<br><br><br><br><br><br><br><br>
+{% endblock content %}

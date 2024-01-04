@@ -1,0 +1,45 @@
+*{
+    /* outline: 1px solid red; */
+    /*background-color: pink;*/
+}
+.container{
+    width: 100%!important;
+    height: 100%!important;
+    /*置中*/
+    /* position: absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%, -50%); */
+
+    border: 1px solid gray;
+    box-shadow: 5px 10px 7px gray;
+    padding: 20px;
+    background-color: coral;
+}
+.fc th{
+    color: white;
+    font-size: 40px;
+}
+.fc .fc-toolbar-title{
+    color: white;
+    font-size: 40px;
+}
+
+
+/* rwd 響應式手機網頁 */
+@media (max-width: 767px) {
+    .container{
+        width: 370px;
+        height: 600px;
+    }
+    .fc th{
+        color: rgb(212, 246, 174);
+        /* !important */
+        font-size: 25px;
+    }
+    .fc .fc-toolbar-title{
+        color: rgb(212, 246, 174);
+        font-size: 30px;
+    }
+    
+}

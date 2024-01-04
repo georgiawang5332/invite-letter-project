@@ -1,0 +1,13 @@
+Package            Version
+------------------ -------
+asgiref            3.7.2
+backports.zoneinfo 0.2.1
+Django             4.0
+pip                23.2.1
+setuptools         41.2.0
+sqlparse           0.4.4
+typing_extensions  4.7.1
+tzdata             2023.3
+
+
+把凌亂的 Code 整理乾淨的線上工具 - DirtyMarkup: https://www.10bestdesign.com/dirtymarkup/css/
